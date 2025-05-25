@@ -1,7 +1,8 @@
 from flask import Flask, render_template_string, redirect
 import json
+from flask import Blueprint, render_template
 
-app = Flask(__name__)
+admin_bp = Blueprint('admin', __name__)
 
 base_template = """
 <!DOCTYPE html>
@@ -36,7 +37,7 @@ base_template = """
 </html>
 """
 
-@app.route('/')
+@admin_bp.route('/')
 def dashboard():
     return render_template_string(base_template + """
     {% block content %}
@@ -50,7 +51,7 @@ def dashboard():
     {% endblock %}
     """)
 
-@app.route('/results')
+@admin_bp.route('/results')
 def results():
     try:
         with open('vote_store.json') as f:
@@ -86,4 +87,4 @@ def results():
     """, counts=counts)
 
 if __name__ == '__main__':
-    app.run(port=5002)
+    admin_bp.run(port=5002)

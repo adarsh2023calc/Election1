@@ -1,15 +1,18 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template,Blueprint, request, redirect
 import requests
 
-app = Flask(__name__)
+
+client_bp = Blueprint('client', __name__)
+
+
 
 # Show voting form
-@app.route('/')
+@client_bp.route('/')
 def vote_form():
     return render_template('vote_form.html')
 
 # Handle form submission
-@app.route('/submit_vote', methods=['POST'])
+client_bp.route('/submit_vote', methods=['POST'])
 def submit_vote():
     voter_id = request.form['voter_id']
     candidate = request.form['candidate']
@@ -30,4 +33,4 @@ def submit_vote():
         return f"<h3>Server error: {e}</h3>"
 
 if __name__ == '__main__':
-    app.run(port=5003)
+    client_bp.run(port=5003)
