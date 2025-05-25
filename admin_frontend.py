@@ -45,7 +45,7 @@ def dashboard():
         <div class="card-body text-center">
             <h3 class="card-title">Welcome to the Admin Dashboard</h3>
             <p class="card-text">Monitor and manage election results from here.</p>
-            <a href="/results" class="btn btn-primary">View Results</a>
+            <a href="/admin/results" class="btn btn-primary">View Results</a>
         </div>
     </div>
     {% endblock %}
@@ -82,7 +82,7 @@ def results():
     {% else %}
         <p>No votes recorded yet.</p>
     {% endif %}
-    <a href="/" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    <a href="/admin" class="btn btn-secondary mt-3">Back to Dashboard</a>
     {% endblock %}
     """, counts=counts)
 
