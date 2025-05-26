@@ -46,6 +46,7 @@ def dashboard():
             <h3 class="card-title">Welcome to the Admin Dashboard</h3>
             <p class="card-text">Monitor and manage election results from here.</p>
             <a href="/admin/results" class="btn btn-primary">View Results</a>
+            <a href="/client" class="btn btn-primary">Vote</a>
         </div>
     </div>
     {% endblock %}
