@@ -1,13 +1,16 @@
 from flask import Flask, request
 import json
 import pika
+import os
 
 app = Flask(__name__)
 
 @app.route('/vote', methods=['POST'])
 def vote():
     data = request.json
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    url = os.environ["CLOUDAMQP_URL"]
+    params = pika.URLParameters(url)
+    connection = pika.BlockingConnection(params)
     channel = connection.channel()
     channel.queue_declare(queue='vote_queue', durable=True)
     channel.basic_publish(

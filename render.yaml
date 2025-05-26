@@ -19,4 +19,11 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python votingapi.py
     plan: free
+
+  - type: worker
+    name: vote-consumer-worker
+    runtime: python
+    buildCommand: 
+    startCommand: python votingapi.py
+    plan: free
    

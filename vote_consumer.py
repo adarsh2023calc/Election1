@@ -18,7 +18,10 @@ def callback(ch, method, properties, body):
         json.dump(votes, f, indent=2)
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+
+url = os.environ["CLOUDAMQP_URL"]
+params = pika.URLParameters(url)
+connection = pika.BlockingConnection(params)
 channel = connection.channel()
 channel.queue_declare(queue='vote_queue', durable=True)
 channel.basic_qos(prefetch_count=1)
