@@ -28,7 +28,7 @@ def submit_vote():
         if response.status_code == 200:
             return f"<h3>Vote submitted successfully for {candidate}!</h3><a href='/'>Vote Again</a>"
         else:
-            return f"<h3>Error: {response.text}</h3><a href='/'>Try Again</a>"
+            return f"<h3>Error: {response.text}</h3><a href='/client'>Try Again</a>"
     except Exception as e:
         return f"<h3>Server error: {e}</h3>"
 
