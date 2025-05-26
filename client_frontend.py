@@ -19,7 +19,7 @@ def submit_vote():
 
     try:
         # Change this to your deployed votingapi URL
-        response = requests.post('https://election1-0knu.onrender.com/vote', json=payload)
+        response = requests.post('http://127.0.0.1:5001/vote', json=payload)
         if response.status_code == 200:
             return f"<h3>Vote submitted successfully for {candidate}!</h3><a href='/client'>Vote Again</a>"
         else:
