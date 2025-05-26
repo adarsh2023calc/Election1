@@ -5,6 +5,9 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn main:app
     plan: free
+    envVars:
+      - key: RABBITMQ_URL
+        fromDatabase: cloudamqp-url # We'll define this in the Render Dashboard
 
   - type: worker
     name: vote-consumer-worker
@@ -12,8 +15,6 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python vote_consumer.py
     plan: free
-  
-  
-
-  
-   
+    envVars:
+      - key: CLOUDAMQP_URL
+        fromDatabase: cloudamqp-url
