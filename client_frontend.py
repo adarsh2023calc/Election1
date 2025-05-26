@@ -7,7 +7,7 @@ client_bp = Blueprint('client', __name__, template_folder='templates')
 def vote_form():
     return render_template('vote_form.html')
 
-@client_bp.route('/submit_vote', methods=['POST'])
+@client_bp.route('client/submit_vote', methods=['POST'])
 def submit_vote():
     voter_id = request.form['voter_id']
     candidate = request.form['candidate']
