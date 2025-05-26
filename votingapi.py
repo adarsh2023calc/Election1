@@ -2,7 +2,9 @@ from flask import Flask, request
 import json
 import pika
 import os
+from dotenv import load_dotenv
 
+load_dotenv(".env.local")
 app = Flask(__name__)
 
 @app.route('/vote', methods=['POST'])

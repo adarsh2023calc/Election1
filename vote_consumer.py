@@ -3,6 +3,10 @@ import json
 import os
 
 VOTE_STORE = 'vote_store.json'
+
+from dotenv import load_dotenv
+load_dotenv(".env.local")
+
 if not os.path.exists(VOTE_STORE):
     with open(VOTE_STORE, 'w') as f:
         json.dump({}, f)
