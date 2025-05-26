@@ -86,5 +86,3 @@ def results():
     {% endblock %}
     """, counts=counts)
 
-if __name__ == '__main__':
-    admin_bp.run(port=5002)

@@ -4,8 +4,8 @@ import os
 
 VOTE_STORE = 'vote_store.json'
 
-from dotenv import load_dotenv
-load_dotenv(".env.local")
+
+
 
 if not os.path.exists(VOTE_STORE):
     with open(VOTE_STORE, 'w') as f:
@@ -23,7 +23,7 @@ def callback(ch, method, properties, body):
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
-url = os.environ["CLOUDAMQP_URL"]
+url = os.getenv("CLOUDAMQP_URL")
 params = pika.URLParameters(url)
 connection = pika.BlockingConnection(params)
 channel = connection.channel()

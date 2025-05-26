@@ -6,7 +6,6 @@ import json
 from dotenv import load_dotenv
 
 
-load_dotenv(".env.local")
 
 client_bp = Blueprint('client', __name__, template_folder='templates')
 
@@ -35,7 +34,7 @@ def submit_vote():
 
 def vote(data):
     try:
-        url = os.environ["CLOUDAMQP_URL"]
+        url = os.getenv("CLOUDAMQP_URL")
         if not url:
             raise ValueError("CLOUDAMQP_URL environment variable not set")
 
