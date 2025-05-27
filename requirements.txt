@@ -3,3 +3,6 @@ gunicorn==21.2.0
 requests
 pika
 dotenv
+
+psycopg2-binary
+sqlalchemy

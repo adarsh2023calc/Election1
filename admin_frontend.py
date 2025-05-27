@@ -1,6 +1,8 @@
 from flask import Flask, render_template_string, redirect
 import json
 from flask import Blueprint, render_template
+from sqlalchemy.orm import Session
+from db import SessionLocal, Vote
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -54,15 +56,17 @@ def dashboard():
 
 @admin_bp.route('/results')
 def results():
+    db: Session = SessionLocal()
     try:
-        with open('vote_store.json') as f:
-            votes = json.load(f)
-    except FileNotFoundError:
-        votes = {}
+        votes = db.query(Vote).all()
+        counts = {}
+        for vote in votes:
+            candidate = vote.candidate
+            counts[candidate] = counts.get(candidate, 0) + 1
+        
+    finally:
+        db.close()
 
-    counts = {}
-    for candidate in votes.values():
-        counts[candidate] = counts.get(candidate, 0) + 1
 
     return render_template_string(base_template + """
     {% block content %}
