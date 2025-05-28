@@ -6,6 +6,8 @@ import json
 from dotenv import load_dotenv
 
 
+load_dotenv(".env.local")
+
 
 client_bp = Blueprint('client', __name__, template_folder='templates')
 

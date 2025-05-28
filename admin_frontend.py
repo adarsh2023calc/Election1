@@ -3,9 +3,11 @@ import json
 from flask import Blueprint, render_template
 from sqlalchemy.orm import Session
 from db import SessionLocal, Vote
+import dotenv
 
 admin_bp = Blueprint('admin', __name__)
 
+dotenv.load_dotenv(".env.local")
 base_template = """
 <!DOCTYPE html>
 <html lang="en">

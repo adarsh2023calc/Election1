@@ -3,7 +3,10 @@ import json
 import os
 
 from db import Vote, SessionLocal, init_db
+from dotenv import load_dotenv
 
+
+load_dotenv(".env.local")
 # Initialize DB schema if not exists
 init_db()
 
