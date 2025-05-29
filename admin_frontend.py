@@ -71,25 +71,75 @@ def results():
 
 
     return render_template_string(base_template + """
-    {% block content %}
-    <h3 class="mb-3">Election Results</h3>
-    {% if counts %}
-    <div class="row">
-        {% for name, count in counts.items() %}
-        <div class="col-md-4">
-            <div class="card border-success">
-                <div class="card-body">
-                    <h5 class="card-title">{{ name }}</h5>
-                    <p class="card-text"><strong>Votes:</strong> {{ count }}</p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Election Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(to right, #0d6efd, #6610f2);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 0 0 2rem 2rem;
+        }
+        .results-section {
+            margin-top: 2rem;
+        }
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="display-4 fw-bold">Live Election Results</h1>
+        <p class="lead">Real-time updates from the voting system</p>
+    </section>
+
+    <!-- Results Section -->
+    <div class="container results-section">
+        <h3 class="mb-4">Candidate Votes</h3>
+
+        {% if counts %}
+        <div class="row">
+            {% for name, count in counts.items() %}
+            <div class="col-md-4 mb-4">
+                <div class="card border-success shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ name }}</h5>
+                        <p class="card-text"><strong>Votes:</strong> {{ count }}</p>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% else %}
+            <div class="alert alert-warning text-center" role="alert">
+                No votes recorded yet.
+            </div>
+        {% endif %}
+
+        <div class="text-center">
+            <a href="/admin" class="btn btn-secondary mt-4">Back to Dashboard</a>
+        </div>
     </div>
-    {% else %}
-        <p>No votes recorded yet.</p>
-    {% endif %}
-    <a href="/admin" class="btn btn-secondary mt-3">Back to Dashboard</a>
-    {% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; {{ 2025 }} SecureVote | Built with Flask & Bootstrap</p>
+    </footer>
+
+</body>
+</html>
+
     """, counts=counts)
 
