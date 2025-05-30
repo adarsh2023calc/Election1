@@ -4,6 +4,7 @@ import os
 import pika
 import json
 from dotenv import load_dotenv
+from flask_login import login_required, current_user
 
 
 load_dotenv(".env.local")
@@ -11,10 +12,13 @@ load_dotenv(".env.local")
 
 client_bp = Blueprint('client', __name__, template_folder='templates')
 
+
+@login_required
 @client_bp.route('/')
 def vote_form():
     return render_template('vote_form.html')
 
+@login_required
 @client_bp.route('/submit_vote', methods=['POST'])
 def submit_vote():
     voter_id = request.form.get('voter_id')
