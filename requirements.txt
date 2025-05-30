@@ -3,6 +3,7 @@ gunicorn==21.2.0
 requests
 pika
 dotenv
-
+werkzeug.security
 psycopg2-binary
 sqlalchemy
+flask_login
