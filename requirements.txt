@@ -1,9 +1,8 @@
 Flask==2.3.2
 gunicorn==21.2.0
-requests
 pika
-dotenv
-werkzeug.security
+sqlalchemy
+python-dotenv
+flask-login
 psycopg2-binary
 sqlalchemy
-flask_login
